@@ -19,9 +19,13 @@ class PageController extends AbstractController
         //dd($search);
         //dump($search);
         //die();
-        
+        $comments = $entityManager->getRepository(Comment::class)->findBy([],[
+            'id' => 'DESC'
+        ]);
+
         return $this->render('home.html.twig', [
-            'comments' => $entityManager->getRepository(Comment::class)->findAll()
+            //'comments' => $entityManager->getRepository(Comment::class)->findAll()
+            'comments' => $comments
         ]);
     }
 }
